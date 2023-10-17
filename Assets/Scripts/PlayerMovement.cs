@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector2 moveDir, jumpDir;
-    [SerializeField] float movementSpeed = 5f;
-    [SerializeField] float jumpForce = 10f;
-    [SerializeField] float dashDistance = 15f;
+    private Vector2 moveDir, jumpDir;
+    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float jumpForce = 10f;
+
     Rigidbody2D rb;
+
+    private bool canDash = true;
     private bool isDashing;
+    [SerializeField] private float dashDistance = 10f;
+    private float dashTime = 0.4f;
+    private float dashCooldown = 1f;
+
 
     void Start()
     {
@@ -19,29 +25,31 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
-        Jump();
     }
 
     private void Movement()
     {
+        if(isDashing) 
+        {
+            return;
+        }
+
         //Move left
         if (Input.GetKey(KeyCode.A))
         {
             moveDir = new Vector2(-1, 0);
             transform.Translate(moveDir * Time.deltaTime * movementSpeed);
         }
+
         //Move right
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = new Vector2(1, 0);
             transform.Translate(moveDir * Time.deltaTime * movementSpeed);
         }
-    }
 
-    void Jump()
-    {
         //Jump
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (rb.velocity.y == 0)
             {
@@ -49,5 +57,30 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
             }
         }
+
+        //Dash
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash) 
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    //Dash code
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(moveDir.x * dashDistance, 0f);
+        yield return new WaitForSeconds(dashTime);
+
+        rb.gravityScale = originalGravity;
+        rb.velocity = Vector2.zero;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+
+        canDash = true;
+        
     }
 }
