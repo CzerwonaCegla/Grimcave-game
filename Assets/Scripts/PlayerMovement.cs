@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector2 moveDir, jumpDir;
-    [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private float jumpForce = 10f;
+    private Vector3 jumpDir;
+    private float moveDir;
+    [SerializeField] private float movementSpeed = 10f;
+    [SerializeField] private float jumpForce = 15f;
 
     Rigidbody2D rb;
 
     private bool canDash = true;
     private bool isDashing;
     [SerializeField] private float dashDistance = 10f;
-    private float dashTime = 0.4f;
+    private float dashTime = 0.2f;
     private float dashCooldown = 1f;
 
 
@@ -37,31 +39,33 @@ public class PlayerMovement : MonoBehaviour
         //Move left
         if (Input.GetKey(KeyCode.A))
         {
-            moveDir = new Vector2(-1, 0);
-            transform.Translate(moveDir * Time.deltaTime * movementSpeed);
+            moveDir = -1f;
+            rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
         }
 
         //Move right
         if (Input.GetKey(KeyCode.D))
         {
-            moveDir = new Vector2(1, 0);
-            transform.Translate(moveDir * Time.deltaTime * movementSpeed);
+            moveDir = 1f;
+            rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
         }
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0f)
         {
-            if (rb.velocity.y == 0)
-            {
-                jumpDir = new Vector2(0, 1);
-                rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
-            }
+            jumpDir = new Vector2(0f, 1f);
+            rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
         }
 
         //Dash
-        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+        }
+
+        if (!Input.anyKey)
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
         }
     }
 
@@ -72,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(moveDir.x * dashDistance, 0f);
+        rb.velocity = new Vector2(moveDir * dashDistance, 0f);
         yield return new WaitForSeconds(dashTime);
 
         rb.gravityScale = originalGravity;
