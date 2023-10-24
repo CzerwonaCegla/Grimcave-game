@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
+    private bool goLeft, goRight, jump, dash, doNothing;
+
     private bool canDash = true;
     private bool isDashing;
     [SerializeField] private float dashDistance = 10f;
@@ -26,51 +28,96 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        CheckKeys();
+    }
+
+    private void FixedUpdate()
+    {
         Movement();
     }
 
-    private void Movement()
+    private void CheckKeys()
     {
-        if(isDashing) 
+        //Return if dashing
+        if (isDashing)
         {
             return;
         }
 
-        //Move left
+        //Detect go left
         if (Input.GetKey(KeyCode.A))
         {
+            goLeft = true;
+        }
+
+        //Detect go right
+        if (Input.GetKey(KeyCode.D))
+        {
+            goRight = true;
+        }
+
+        //Detect jump
+        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0f)
+        {
+            jump = true;
+        }
+
+        //Detect dash
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            dash = true;
+        }
+
+        //Do if no buttons pressed (to stop rb slide)
+        else if (!Input.anyKey)
+        {
+            doNothing = true;
+        }
+    }
+
+    private void Movement()
+    {
+        //Move left
+        if (goLeft)
+        {
+            goLeft = false;
             moveDir = -1f;
             rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
         }
 
         //Move right
-        if (Input.GetKey(KeyCode.D))
+        if (goRight)
         {
+            goRight = false;
             moveDir = 1f;
             rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
         }
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0f)
+        if (jump)
         {
+            jump = false;
             jumpDir = new Vector2(0f, 1f);
             rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
         }
 
         //Dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (dash)
         {
-            StartCoroutine(Dash());
+            dash = false;
+            StartCoroutine(DashKor());
         }
 
-        if (!Input.anyKey)
+        //Execute if no keys pressed
+        if (doNothing)
         {
+            doNothing = false;
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
     }
 
     //Dash code
-    private IEnumerator Dash()
+    private IEnumerator DashKor()
     {
         canDash = false;
         isDashing = true;
