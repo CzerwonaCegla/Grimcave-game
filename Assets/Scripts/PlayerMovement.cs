@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         goRight = Input.GetKey(KeyCode.D);
 
         //Detect jump
-        if (Input.GetKeyDown(KeyCode.Space)) { jump = true; };
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck()) { jump = true; };
 
         //Detect dash
         if (Input.GetKeyDown(KeyCode.LeftShift)) { dash = true; }
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Jump
-        if (jump && GroundCheck())
+        if (jump)
         {
             jump = false;
             rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
     //Checks if player on ground layer
     private bool GroundCheck()
     {
-        return Physics2D.OverlapCircle(groundDetector.position, 0.1f, groundLayer);
+        return Physics2D.OverlapCircle(groundDetector.position, 0.15f, groundLayer);
     }
 
     //Dash code
