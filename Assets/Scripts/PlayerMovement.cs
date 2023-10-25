@@ -6,13 +6,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Vector3 jumpDir;
-    private float moveDir;
+    private float moveDir = 1;
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] private float jumpForce = 15f;
 
     Rigidbody2D rb;
 
-    private bool goLeft, goRight, jump, dash, doNothing;
+    private bool goRight, goLeft, jump, dash, doNothing;
+
+    [SerializeField] Transform groundDetector;
+    [SerializeField] LayerMask groundLayer;
 
     private bool canDash = true;
     private bool isDashing;
@@ -28,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        CheckKeys();
+        if (!isDashing) { CheckKeys(); }
     }
 
     private void FixedUpdate()
@@ -38,41 +41,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckKeys()
     {
-        //Return if dashing
-        if (isDashing)
-        {
-            return;
-        }
-
         //Detect go left
-        if (Input.GetKey(KeyCode.A))
-        {
-            goLeft = true;
-        }
+        goLeft = Input.GetKey(KeyCode.A);
 
         //Detect go right
-        if (Input.GetKey(KeyCode.D))
-        {
-            goRight = true;
-        }
+        goRight = Input.GetKey(KeyCode.D);
 
         //Detect jump
-        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0f)
-        {
-            jump = true;
-        }
+        jump = Input.GetKey(KeyCode.Space);
 
         //Detect dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            dash = true;
-        }
+        dash = Input.GetKey(KeyCode.LeftShift);
 
         //Do if no buttons pressed (to stop rb slide)
-        else if (!Input.anyKey)
-        {
-            doNothing = true;
-        }
+        doNothing = !Input.anyKey;
     }
 
     private void Movement()
@@ -94,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Jump
-        if (jump)
+        if (jump && GroundCheck())
         {
             jump = false;
             jumpDir = new Vector2(0f, 1f);
@@ -102,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Dash
-        if (dash)
+        if (dash && canDash)
         {
             dash = false;
             StartCoroutine(DashKor());
@@ -114,6 +96,12 @@ public class PlayerMovement : MonoBehaviour
             doNothing = false;
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
+    }
+
+    //Checks if player on ground layer
+    private bool GroundCheck()
+    {
+        return Physics2D.OverlapCircle(groundDetector.position, 0.2f, groundLayer);
     }
 
     //Dash code
