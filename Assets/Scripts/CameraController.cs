@@ -7,11 +7,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject Player;
     Vector3 toPos;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         toPos = new Vector3(Player.transform.position.x, 0, -10);

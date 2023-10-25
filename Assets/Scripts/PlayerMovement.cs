@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector3 jumpDir;
+    private Vector3 jumpDir = new Vector3(0f, 1f);
     private float moveDir = 1;
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] private float jumpForce = 15f;
@@ -48,10 +48,10 @@ public class PlayerMovement : MonoBehaviour
         goRight = Input.GetKey(KeyCode.D);
 
         //Detect jump
-        jump = Input.GetKey(KeyCode.Space);
+        if (Input.GetKeyDown(KeyCode.Space)) { jump = true; };
 
         //Detect dash
-        dash = Input.GetKey(KeyCode.LeftShift);
+        if (Input.GetKeyDown(KeyCode.LeftShift)) { dash = true; }
 
         //Do if no buttons pressed (to stop rb slide)
         doNothing = !Input.anyKey;
@@ -79,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
         if (jump && GroundCheck())
         {
             jump = false;
-            jumpDir = new Vector2(0f, 1f);
             rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
         }
 
@@ -101,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
     //Checks if player on ground layer
     private bool GroundCheck()
     {
-        return Physics2D.OverlapCircle(groundDetector.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundDetector.position, 0.1f, groundLayer);
     }
 
     //Dash code

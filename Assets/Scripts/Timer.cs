@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float remainingTime = 10f;
+    [SerializeField] float timeToAdd = 10f;
+    public float remainingTime = 10f;
     [SerializeField] GameObject LoseScreen;
     private float timeFade = 1;
 
     private void Start()
     {
+        EventManager.current.onTimePickupTriggered += TimePickupTriggered;
         LoseScreen.SetActive(false);
     }
     void Update()
@@ -32,5 +34,10 @@ public class Timer : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+    }
+
+    private void TimePickupTriggered()
+    {
+        remainingTime += timeToAdd;
     }
 }
