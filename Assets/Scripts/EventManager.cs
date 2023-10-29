@@ -20,4 +20,13 @@ public class EventManager : MonoBehaviour
             onTimePickupTriggered();
         }
     }
+
+    public event Action onCheckPointRespawnTriggered;
+    public void CheckPointRespawnTriggered()
+    {
+        if(onCheckPointRespawnTriggered != null)
+        {
+            onCheckPointRespawnTriggered();
+        }
+    }
 }
