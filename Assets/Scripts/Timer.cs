@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float timeToAdd = 10f;
-    [SerializeField] private float remainingTime = 10f;
+    public float remainingTime = 10f;
 
     [SerializeField] GameObject LoseScreen;
     [SerializeField] TextMeshProUGUI tmpTimerText;
 
-    private float timeFade = 1;
+    [DoNotSerialize] public float timeFade = 1;
 
     private void Start()
     {

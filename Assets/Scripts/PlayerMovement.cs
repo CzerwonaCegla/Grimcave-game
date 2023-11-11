@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveDir = 1;
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] private float jumpForce = 15f;
+    private Animator anim;
 
     Rigidbody2D rb;
 
@@ -27,11 +28,30 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (!isDashing) { CheckKeys(); }
+
+        if (moveDir > 0.01f)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (moveDir < -0.01f)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            ;
+        }
+
+        if (jump == false)
+        {
+            anim.SetBool("run", goLeft || goRight);
+        }
+        anim.SetBool("grounded", GroundCheck() != false);
+        anim.SetBool("dash", isDashing != false);
+
     }
 
     private void FixedUpdate()
@@ -80,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = false;
             rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
+            anim.SetTrigger("jump");
         }
 
         //Dash
