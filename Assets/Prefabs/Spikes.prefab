@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8446760507681933946}
   m_Layer: 0
   m_Name: Spikes
-  m_TagString: Untagged
+  m_TagString: Traps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e5480e7b1f55fb44ba867ae4c76823b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15a901a97ea40344088a00e67fae044a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  timer: {fileID: 0}
 --- !u!61 &8446760507681933946
 BoxCollider2D:
   m_ObjectHideFlags: 0

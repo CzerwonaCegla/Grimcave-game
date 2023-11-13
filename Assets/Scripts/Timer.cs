@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer instance;
+    
     [SerializeField] private float timeToAdd = 10f;
     public float remainingTime = 10f;
 
@@ -14,6 +16,17 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI tmpTimerText;
 
     [DoNotSerialize] public float timeFade = 1;
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     private void Start()
     {
