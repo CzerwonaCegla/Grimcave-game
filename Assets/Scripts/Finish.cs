@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
+    private Scene scene;
     public Timer timer;
     [SerializeField] GameObject WinScreen;
     private bool winSequence = false;
 
     private void Start()
     {
+        scene = SceneManager.GetActiveScene();
         WinScreen.SetActive(false);
     }
 
@@ -32,9 +36,13 @@ public class Finish : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && SceneManager.GetSceneByBuildIndex(scene.buildIndex+1) == null)
         {
             winSequence = true;
+        }
+        else
+        {
+            SceneManager.LoadScene(scene.buildIndex+1);
         }
 
     }
