@@ -16,7 +16,7 @@ public class Finish : MonoBehaviour
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         totalSceneCount = SceneManager.sceneCount;
         WinScreen.SetActive(false);
-        Debug.Log(totalSceneCount);
+        //Debug.Log(totalSceneCount);
     }
 
     private void Update()

@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundDetector;
     [SerializeField] LayerMask groundLayer;
 
+    [SerializeField] private float dashDistance = 10f;
     private bool canDash = true;
     private bool isDashing;
-    [SerializeField] private float dashDistance = 10f;
     private float dashTime = 0.2f;
     private float dashCooldown = 1f;
 
@@ -73,34 +73,41 @@ public class PlayerMovement : MonoBehaviour
         //Detect dash
         if (Input.GetKeyDown(KeyCode.LeftShift)) { dash = true; }
 
-        //Do if no buttons pressed (to stop rb slide)
-        doNothing = !Input.anyKey;
+        if (!Input.anyKey)
+        {
+            doNothing = true;
+        }
     }
 
     private void Movement()
     {
+        //Execute if no keys pressed
+        if (doNothing)
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
         //Move left
         if (goLeft)
         {
-            goLeft = false;
             moveDir = -1f;
             rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
+            goLeft = false;
         }
 
         //Move right
         if (goRight)
         {
-            goRight = false;
             moveDir = 1f;
             rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
+            goRight = false;
         }
 
         //Jump
         if (jump)
         {
-            jump = false;
             rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
             anim.SetTrigger("jump");
+            jump = false;
         }
 
         //Dash
@@ -110,12 +117,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DashKor());
         }
 
-        //Execute if no keys pressed
-        if (doNothing)
-        {
-            doNothing = false;
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
+        
     }
 
     //Checks if player on ground layer
