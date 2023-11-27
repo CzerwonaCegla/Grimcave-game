@@ -51,4 +51,15 @@ public class UnstablePlatform : MonoBehaviour
 
         CRrunning = false;
     }
+
+    public enum PlatformStages 
+    { 
+        Idle;
+        Breaking1;
+        Breaking2;
+        Breaking3;
+        Breaking4;
+        Breaking5;
+        Gone;
+    }
 }
