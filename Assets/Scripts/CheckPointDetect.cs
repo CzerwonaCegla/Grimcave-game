@@ -17,7 +17,13 @@ public class CheckPointDetect : MonoBehaviour
         if (collision.CompareTag("CheckPoint"))
         {
             currentCheckPoint = collision.gameObject.transform.position;
-            collision.gameObject.SetActive(false);
+            //collision.gameObject.SetActive(false);
+            CheckPoint checkPointScript = collision.GetComponent<CheckPoint>();
+            if (checkPointScript != null)
+            {
+                // Call the TriggerChange method on the CheckPoint script
+                checkPointScript.TriggerChange();
+            }
         }
         if (collision.CompareTag("Traps"))
         {

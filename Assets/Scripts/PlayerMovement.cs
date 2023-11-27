@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundDetector;
     [SerializeField] LayerMask groundLayer;
 
+    private bool damaged = false;
     private bool canDash = true;
     private bool isDashing;
     [SerializeField] private float dashDistance = 10f;
@@ -79,43 +80,51 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        //Move left
-        if (goLeft)
+        if (!damaged)
         {
-            goLeft = false;
-            moveDir = -1f;
-            rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
-        }
+            //Move left
+            if (goLeft)
+            {
+                goLeft = false;
+                moveDir = -1f;
+                rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
+            }
 
-        //Move right
-        if (goRight)
-        {
-            goRight = false;
-            moveDir = 1f;
-            rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
-        }
+            //Move right
+            if (goRight)
+            {
+                goRight = false;
+                moveDir = 1f;
+                rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
+            }
 
-        //Jump
-        if (jump)
-        {
-            jump = false;
-            rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
-            anim.SetTrigger("jump");
-        }
+            //Jump
+            if (jump)
+            {
+                jump = false;
+                rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
+                anim.SetTrigger("jump");
+            }
 
-        //Dash
-        if (dash && canDash)
-        {
-            dash = false;
-            StartCoroutine(DashKor());
-        }
+            //Dash
+            if (dash && canDash)
+            {
+                dash = false;
+                StartCoroutine(DashKor());
+            }
 
-        //Execute if no keys pressed
-        if (doNothing)
+            //Execute if no keys pressed
+            if (doNothing)
+            {
+                doNothing = false;
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+        }
+        else
         {
-            doNothing = false;
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
+        
     }
 
     //Checks if player on ground layer
@@ -141,5 +150,25 @@ public class PlayerMovement : MonoBehaviour
 
         canDash = true;
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Traps") && !damaged)
+        {
+            StartCoroutine(TriggerDamage());
+        }
+    }
+
+    private IEnumerator TriggerDamage()
+    {
+        damaged = true;
+        anim.SetBool("damaged", damaged);
+
+        // Wait for a few seconds
+        yield return new WaitForSeconds(0.5f); // Change the time as needed
+
+        damaged = false;
+        anim.SetBool("damaged", damaged);
     }
 }

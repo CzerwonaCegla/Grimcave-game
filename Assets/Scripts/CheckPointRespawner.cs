@@ -15,6 +15,13 @@ public class CheckPointRespawner : MonoBehaviour
 
     private void CheckPointRespawnTriggered()
     {
+        // Delay the execution by 2 seconds (adjust the time as needed)
+        float delay = 0.5f;
+        Invoke("RespawnPlayerAtCheckPoint", delay);
+    }
+
+    private void RespawnPlayerAtCheckPoint()
+    {
         player.transform.position = player.GetComponent<CheckPointDetect>().currentCheckPoint;
     }
 }
