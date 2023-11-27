@@ -51,7 +51,7 @@ public class UnstablePlatform : MonoBehaviour
 
         CRrunning = false;
     }
-
+    //enum ze stagami
     public enum PlatformStages 
     { 
         Idle;
