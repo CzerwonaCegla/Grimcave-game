@@ -6,6 +6,8 @@ using UnityEngine;
 public class CheckPointRespawner : MonoBehaviour
 {
     private GameObject player;
+    private Vector2 deathPlace;
+    [SerializeField] GameObject playerCorpse;
 
     private void Start()
     {
@@ -15,6 +17,8 @@ public class CheckPointRespawner : MonoBehaviour
 
     private void CheckPointRespawnTriggered()
     {
+        deathPlace = player.transform.position;
         player.transform.position = player.GetComponent<CheckPointDetect>().currentCheckPoint;
+        Instantiate(playerCorpse, deathPlace, Quaternion.identity);
     }
 }

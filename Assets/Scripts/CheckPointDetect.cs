@@ -19,15 +19,9 @@ public class CheckPointDetect : MonoBehaviour
             currentCheckPoint = collision.gameObject.transform.position;
             collision.gameObject.SetActive(false);
         }
-        //if (collision.CompareTag("Trap"))
-        //{
-        //    EventManager.current.CheckPointRespawnTriggered();
-        //}
-    }
-    
-    //Do usuniêcie je¿eli dokoñczone bêd¹ pu³apki
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape)) { EventManager.current.CheckPointRespawnTriggered(); }
+        if (collision.CompareTag("Traps"))
+        {
+            EventManager.current.CheckPointRespawnTriggered();
+        }
     }
 }

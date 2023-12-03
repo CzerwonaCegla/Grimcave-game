@@ -2,17 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer instance;
+    
     [SerializeField] private float timeToAdd = 10f;
-    [SerializeField] private float remainingTime = 10f;
+    public float remainingTime = 10f;
 
     [SerializeField] GameObject LoseScreen;
     [SerializeField] TextMeshProUGUI tmpTimerText;
 
-    private float timeFade = 1;
+    [DoNotSerialize] public float timeFade = 1;
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     private void Start()
     {
@@ -23,7 +37,7 @@ public class Timer : MonoBehaviour
     {
         if (remainingTime > 0)
         {
-            Debug.Log(remainingTime);
+            //Debug.Log(remainingTime);
             remainingTime -= Time.deltaTime;
             float rounded = (float)Math.Round(remainingTime, 2);
             tmpTimerText.text = rounded.ToString() + "s";
