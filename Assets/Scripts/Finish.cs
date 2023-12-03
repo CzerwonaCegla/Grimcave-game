@@ -25,13 +25,14 @@ public class Finish : MonoBehaviour
         {
             if (timer.timeFade > 0.1f)
             {
+                WinScreen.SetActive(true);
                 Time.timeScale = timer.timeFade;
                 timer.timeFade -= Time.deltaTime;
             }
             else
             {
-                WinScreen.SetActive(true);
-                Time.timeScale = 0;
+                WinScreen.SetActive(false);
+                SceneManager.LoadScene("MainMenu");
             }
         }
        

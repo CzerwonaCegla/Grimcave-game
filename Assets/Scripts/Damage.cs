@@ -25,6 +25,7 @@ public class Damage : MonoBehaviour
             if (GetTimer() != null && GetTimer().remainingTime > 0f)
             {
                 GetTimer().remainingTime -= damage;
+                CameraController.instance.StartCoroutine(CameraController.instance.Shake());
             }
         }
             

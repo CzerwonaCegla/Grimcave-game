@@ -18,9 +18,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundDetector;
     [SerializeField] LayerMask groundLayer;
 
-    [SerializeField] private float dashDistance = 10f;
+    private bool damaged = false;
     private bool canDash = true;
     private bool isDashing;
+    [SerializeField] private float dashDistance = 10f;
     private float dashTime = 0.2f;
     private float dashCooldown = 1f;
 
@@ -81,42 +82,50 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        //Execute if no keys pressed
-        if (doNothing)
+        if (!damaged)
+        {
+            //Move left
+            if (goLeft)
+            {
+                goLeft = false;
+                moveDir = -1f;
+                rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
+            }
+
+            //Move right
+            if (goRight)
+            {
+                goRight = false;
+                moveDir = 1f;
+                rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
+            }
+
+            //Jump
+            if (jump)
+            {
+                jump = false;
+                rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
+                anim.SetTrigger("jump");
+            }
+
+            //Dash
+            if (dash && canDash)
+            {
+                dash = false;
+                StartCoroutine(DashKor());
+            }
+
+            //Execute if no keys pressed
+            if (doNothing)
+            {
+                doNothing = false;
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+        }
+        else
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
-        //Move left
-        if (goLeft)
-        {
-            moveDir = -1f;
-            rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
-            goLeft = false;
-        }
-
-        //Move right
-        if (goRight)
-        {
-            moveDir = 1f;
-            rb.velocity = new Vector2(moveDir * movementSpeed, rb.velocity.y);
-            goRight = false;
-        }
-
-        //Jump
-        if (jump)
-        {
-            rb.AddForce(jumpDir * jumpForce, ForceMode2D.Impulse);
-            anim.SetTrigger("jump");
-            jump = false;
-        }
-
-        //Dash
-        if (dash && canDash)
-        {
-            dash = false;
-            StartCoroutine(DashKor());
-        }
-
         
     }
 
@@ -143,5 +152,25 @@ public class PlayerMovement : MonoBehaviour
 
         canDash = true;
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Traps") && !damaged)
+        {
+            StartCoroutine(TriggerDamage());
+        }
+    }
+
+    private IEnumerator TriggerDamage()
+    {
+        damaged = true;
+        anim.SetBool("damaged", damaged);
+
+        // Wait for a few seconds
+        yield return new WaitForSeconds(0.5f); // Change the time as needed
+
+        damaged = false;
+        anim.SetBool("damaged", damaged);
     }
 }
