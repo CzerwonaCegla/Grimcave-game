@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
-    private Scene scene;
+    private int sceneIndex, totalSceneCount;
     public Timer timer;
     [SerializeField] GameObject WinScreen;
     private bool winSequence = false;
 
     private void Start()
     {
-        scene = SceneManager.GetActiveScene();
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        totalSceneCount = SceneManager.sceneCount;
         WinScreen.SetActive(false);
+        //Debug.Log(totalSceneCount);
     }
 
     private void Update()
@@ -37,13 +39,13 @@ public class Finish : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && SceneManager.GetSceneByBuildIndex(scene.buildIndex+1) == null)
+        if (collision.tag == "Player" && sceneIndex <= totalSceneCount)
+        {
+            SceneManager.LoadScene(sceneIndex + 1);
+        }
+        else if (collision.tag == "Player")
         {
             winSequence = true;
-        }
-        else
-        {
-            SceneManager.LoadScene(scene.buildIndex+1);
         }
 
     }

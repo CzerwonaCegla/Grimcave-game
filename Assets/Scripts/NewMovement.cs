@@ -45,29 +45,29 @@ public class NewMovement : MonoBehaviour
     {
         if (!damaged)
         {
-            if (!isDashing)
+        if (!isDashing)
+        {
+            if (Input.GetKey(KeyCode.D))
             {
-                if (Input.GetKey(KeyCode.D))
-                {
-                    moveDir = 1;
-                }
-                else if (Input.GetKey(KeyCode.A))
-                {
-                    moveDir = -1;
-                }
-                else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A)) { moveDir = 0; }
-                else if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) { moveDir = 0; }
+                moveDir = 1;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                moveDir = -1;
+            }
+            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A)) { moveDir = 0; }
+            else if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) { moveDir = 0; }
 
-                if (Input.GetKeyDown(KeyCode.LeftShift))
-                {
-                    dash = true;
-                }
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    jump = true;
-                }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                dash = true;
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                jump = true;
             }
         }
+    }
 
         
 
@@ -101,7 +101,7 @@ public class NewMovement : MonoBehaviour
             {
                 runSoundEffect.Play();
             }
-        }
+    }
         else
         {
             runSoundEffect.Stop();
@@ -112,25 +112,25 @@ public class NewMovement : MonoBehaviour
     {
         if (!damaged)
         {
-            if (jump && GroundCheck())
-            {
-                Debug.Log("Jumped");
+        if (jump && GroundCheck())
+        {
+            Debug.Log("Jumped");
                 jumpSoundEffect.Play();
-                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            }
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
 
             if (dash && canDash && moveDir != 0)
-            {
-                Debug.Log("Dashed");
+        {
+            Debug.Log("Dashed");
                 dashSoundEffect.Play();
-                StartCoroutine(DashCor());
-            }
-            if (!isDashing)
-            {
-                Vector3 targetVelocity = new Vector2(moveDir * moveSpeed, rb.velocity.y);
-                rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref Velo, moveSmooth);
-            }
+            StartCoroutine(DashCor());
         }
+        if (!isDashing)
+        {
+            Vector3 targetVelocity = new Vector2(moveDir * moveSpeed, rb.velocity.y);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref Velo, moveSmooth);
+        }
+    }
         else
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);

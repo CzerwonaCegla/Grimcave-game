@@ -43,7 +43,7 @@ public class Timer : MonoBehaviour
     {
         if (remainingTime > 0)
         {
-            Debug.Log(remainingTime);
+            //Debug.Log(remainingTime);
             remainingTime -= Time.deltaTime;
             float rounded = (float)Math.Round(remainingTime, 2);
             tmpTimerText.text = rounded.ToString();

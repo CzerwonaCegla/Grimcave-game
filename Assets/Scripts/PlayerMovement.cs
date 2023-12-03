@@ -74,8 +74,10 @@ public class PlayerMovement : MonoBehaviour
         //Detect dash
         if (Input.GetKeyDown(KeyCode.LeftShift)) { dash = true; }
 
-        //Do if no buttons pressed (to stop rb slide)
-        doNothing = !Input.anyKey;
+        if (!Input.anyKey)
+        {
+            doNothing = true;
+        }
     }
 
     private void Movement()
