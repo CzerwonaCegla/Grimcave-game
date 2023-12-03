@@ -6,6 +6,7 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     public static EventManager current;
+    [SerializeField] private AudioSource pickUpSound;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class EventManager : MonoBehaviour
     public event Action onTimePickupTriggered;
     public void TimePickupTriggered()
     {
+        pickUpSound.Play();
         if (onTimePickupTriggered != null)
         {
             onTimePickupTriggered();

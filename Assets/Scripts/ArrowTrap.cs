@@ -7,11 +7,12 @@ public class ArrowTrap : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] arrows;
+    [SerializeField] private AudioSource shootSoundEffect;
     private float cooldownTimer;
     private void Attack()
     {
         cooldownTimer = 0;
-
+        shootSoundEffect.Play();
         arrows[FindArrow()].transform.position = firePoint.position;
         arrows[FindArrow()].GetComponent<EnemyProjectile>().ActivateProjectile();
     }

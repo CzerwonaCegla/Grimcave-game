@@ -29,6 +29,12 @@ public class NewMovement : MonoBehaviour
     [SerializeField] Transform groundDetector;
     [SerializeField] LayerMask groundLayer;
 
+    [Space(10)]
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource dashSoundEffect;
+    [SerializeField] private AudioSource runSoundEffect;
+    [SerializeField] private AudioSource damageSoundEffect;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -88,6 +94,18 @@ public class NewMovement : MonoBehaviour
         Movement(moveDir, dash, jump);
         jump = false;
         dash = false;
+
+        if (moveDir != 0 && GroundCheck())
+        {
+            if (!runSoundEffect.isPlaying)
+            {
+                runSoundEffect.Play();
+            }
+        }
+        else
+        {
+            runSoundEffect.Stop();
+        }
     }
 
     private void Movement(float moveDir, bool dash, bool jump)
@@ -97,12 +115,14 @@ public class NewMovement : MonoBehaviour
             if (jump && GroundCheck())
             {
                 Debug.Log("Jumped");
+                jumpSoundEffect.Play();
                 rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             }
 
             if (dash && canDash && moveDir != 0)
             {
                 Debug.Log("Dashed");
+                dashSoundEffect.Play();
                 StartCoroutine(DashCor());
             }
             if (!isDashing)
@@ -150,6 +170,7 @@ public class NewMovement : MonoBehaviour
     private IEnumerator TriggerDamage()
     {
         damaged = true;
+        damageSoundEffect.Play();
         anim.SetBool("damaged", damaged);
 
         // Wait for a few seconds

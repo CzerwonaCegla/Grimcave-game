@@ -16,6 +16,8 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject LoseScreen;
     [SerializeField] GameObject RestartScreen;
     [SerializeField] TextMeshProUGUI tmpTimerText;
+    [SerializeField] private AudioSource deathSoundEffect;
+    [SerializeField] private AudioSource buttonPressSound;
 
     [DoNotSerialize] public float timeFade = 1;
 
@@ -53,6 +55,7 @@ public class Timer : MonoBehaviour
 
             if (timeFade > 0.1f)
             {
+                deathSoundEffect.Play();
                 Time.timeScale = timeFade;
                 timeFade -= Time.deltaTime;
             }
@@ -72,6 +75,7 @@ public class Timer : MonoBehaviour
 
     public void Restart()
     {
+        buttonPressSound.Play();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         // Load the current scene

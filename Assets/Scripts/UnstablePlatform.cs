@@ -16,6 +16,11 @@ public class UnstablePlatform : MonoBehaviour
     public Sprite spriteStage5;
     public Sprite spriteStage6;
     public Sprite spriteStage7;
+
+    [Space(10)]
+    [SerializeField] private AudioSource soundStage1;
+    [SerializeField] private AudioSource soundStage2;
+    [SerializeField] private AudioSource soundStage3;
     void Start()
     {
         colider = GetComponent<BoxCollider2D>();
@@ -38,13 +43,16 @@ public class UnstablePlatform : MonoBehaviour
 
         // stage 2
         spriteRenderer.sprite = spriteStage2;
+        soundStage1.Play();
         yield return new WaitForSeconds(0.5f);
 
         // stage 3
         spriteRenderer.sprite = spriteStage3;
+        soundStage2.Play();
         yield return new WaitForSeconds(0.5f);
 
         // stage 4 - platform break1
+        soundStage3.Play();
         spriteRenderer.sprite = spriteStage4;
         colider.enabled = false;
         yield return new WaitForSeconds(0.1f);

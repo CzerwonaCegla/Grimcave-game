@@ -8,6 +8,7 @@ public class FinalFinish : MonoBehaviour
     public Timer timer;
     [SerializeField] GameObject WinScreen;
     private bool winSequence = false;
+    [SerializeField] private AudioSource finishSoundEffect;
 
     private void Start()
     {
@@ -38,6 +39,8 @@ public class FinalFinish : MonoBehaviour
         if (collision.tag == "Player")
         {
             winSequence = true;
+            finishSoundEffect.Play();
+            //timer.timeFade = 100f;
         }
 
     }

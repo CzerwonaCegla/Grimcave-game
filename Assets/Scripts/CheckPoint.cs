@@ -8,6 +8,8 @@ public class CheckPoint : MonoBehaviour
     public bool WasTriggered = false;
     public Sprite newCheckpointSprite;
     private SpriteRenderer checkpointSpriteRenderer;
+    [SerializeField] private AudioSource activationSound;
+    Animator anim;
 
     private void Start()
     {
@@ -16,7 +18,12 @@ public class CheckPoint : MonoBehaviour
 
     public void TriggerChange()
     {
-        WasTriggered = true;
+        if (WasTriggered == false)
+        {
+            activationSound.Play();
+        }
         checkpointSpriteRenderer.sprite = newCheckpointSprite;
+        //anim.SetTrigger("activation");
+        WasTriggered = true;
     }
 }
