@@ -21,6 +21,8 @@ public class Finish : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(totalSceneCount);
+        Debug.Log(sceneIndex);
         if (winSequence == true)
         {
             if (timer.timeFade > 0.1f)

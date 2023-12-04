@@ -23883,6 +23883,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2295593259711560583, guid: eb2b73c6ab0eec14a8cc2903378b2194, type: 3}
+      propertyPath: currentStage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2721221543563817925, guid: eb2b73c6ab0eec14a8cc2903378b2194, type: 3}
       propertyPath: m_Name
       value: Platforma
