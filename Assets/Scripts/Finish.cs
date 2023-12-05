@@ -14,7 +14,7 @@ public class Finish : MonoBehaviour
     private void Start()
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        totalSceneCount = SceneManager.sceneCount;
+        totalSceneCount = SceneManager.sceneCountInBuildSettings;
         WinScreen.SetActive(false);
         //Debug.Log(totalSceneCount);
     }
@@ -22,7 +22,7 @@ public class Finish : MonoBehaviour
     private void Update()
     {
         Debug.Log(totalSceneCount);
-        Debug.Log(sceneIndex);
+        //Debug.Log(sceneIndex);
         if (winSequence == true)
         {
             if (timer.timeFade > 0.1f)
@@ -41,7 +41,7 @@ public class Finish : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && sceneIndex <= totalSceneCount)
+        if (collision.tag == "Player" && sceneIndex < totalSceneCount-1)
         {
             SceneManager.LoadScene(sceneIndex + 1);
         }
