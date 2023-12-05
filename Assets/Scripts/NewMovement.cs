@@ -70,7 +70,7 @@ public class NewMovement : MonoBehaviour
     }
 
         
-
+        // co to ma byæ? \/
         if (moveDir > 0.01f)
         {
             transform.localScale = Vector3.one;
@@ -111,30 +111,31 @@ public class NewMovement : MonoBehaviour
     private void Movement(float moveDir, bool dash, bool jump)
     {
         if (!damaged)
-        {
-        if (jump && GroundCheck())
-        {
-            Debug.Log("Jumped");
+            {
+            if (jump && GroundCheck())
+            {
+                //Debug.Log("Jumped");
                 jumpSoundEffect.Play();
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-        }
+                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            }
 
             if (dash && canDash && moveDir != 0)
-        {
-            Debug.Log("Dashed");
+            {
+                //Debug.Log("Dashed");
                 dashSoundEffect.Play();
-            StartCoroutine(DashCor());
+                StartCoroutine(DashCor());
+            }
+            if (!isDashing)
+            {
+                Vector3 targetVelocity = new Vector2(moveDir * moveSpeed, rb.velocity.y);
+                rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref Velo, moveSmooth);
+            }
         }
-        if (!isDashing)
-        {
-            Vector3 targetVelocity = new Vector2(moveDir * moveSpeed, rb.velocity.y);
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref Velo, moveSmooth);
-        }
-    }
-        else
-        {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
+        // co to kurwa jest \/
+            else
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
     }
 
     private IEnumerator DashCor()

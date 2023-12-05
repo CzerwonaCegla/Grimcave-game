@@ -34,14 +34,14 @@ public class FinalFinish : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            winSequence = true;
-            finishSoundEffect.Play();
-            //timer.timeFade = 100f;
-        }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Player")
+    //    {
+    //        winSequence = true;
+    //        finishSoundEffect.Play();
+    //        //timer.timeFade = 100f;
+    //    }
 
-    }
+    //}
 }

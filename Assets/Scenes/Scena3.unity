@@ -25033,6 +25033,7 @@ GameObject:
   - component: {fileID: 1485330716}
   - component: {fileID: 1485330715}
   - component: {fileID: 1485330714}
+  - component: {fileID: 1485330718}
   - component: {fileID: 1485330717}
   m_Layer: 0
   m_Name: Finish
@@ -25160,7 +25161,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485330712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bbdd753f22b72347bda7c7111a8a684, type: 3}
   m_Name: 
@@ -25168,6 +25169,20 @@ MonoBehaviour:
   timer: {fileID: 180871133}
   WinScreen: {fileID: 1060734590}
   finishSoundEffect: {fileID: 0}
+--- !u!114 &1485330718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485330712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c185ee4e9ca6c4fa31bab11953d4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 180871133}
+  WinScreen: {fileID: 1060734590}
 --- !u!1 &1487357777
 GameObject:
   m_ObjectHideFlags: 0
@@ -27650,7 +27665,6 @@ GameObject:
   - component: {fileID: 2080381535}
   - component: {fileID: 2080381534}
   - component: {fileID: 2080381533}
-  - component: {fileID: 2080381532}
   - component: {fileID: 2080381531}
   - component: {fileID: 2080381530}
   - component: {fileID: 2080381529}
@@ -28165,25 +28179,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &2080381532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080381522}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41a30586f36aee40b6d4f5f9ed7e606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 10
-  jumpForce: 18
-  groundDetector: {fileID: 1435218761}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  dashDistance: 30
 --- !u!114 &2080381533
 MonoBehaviour:
   m_ObjectHideFlags: 0
