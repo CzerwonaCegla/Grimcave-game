@@ -6,6 +6,10 @@ public class UnstablePlatform : MonoBehaviour
 {
     public PlatformStateSprites[] sprites;
     [SerializeField] private PlatformStages currentStage;
+    [Space(10)]
+    [SerializeField] private AudioSource soundStage1;
+    [SerializeField] private AudioSource soundStage2;
+    [SerializeField] private AudioSource soundStage3;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -29,11 +33,14 @@ public class UnstablePlatform : MonoBehaviour
     private IEnumerator PlatformChangingCor()
     {
         NextPlatformStage();
+        soundStage1.Play();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
+        soundStage2.Play();
         NextPlatformStage();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
+        soundStage3.Play();
         NextPlatformStage();
 
         yield return new WaitForSeconds(0.2f);
@@ -73,9 +80,9 @@ public class UnstablePlatform : MonoBehaviour
                 }
         }
 
-        foreach(var sprite in sprites)
+        foreach (var sprite in sprites)
         {
-            if(sprite.state == currentStage)
+            if (sprite.state == currentStage)
             {
                 GetComponent<SpriteRenderer>().sprite = sprite.sprite;
                 break;
@@ -84,8 +91,8 @@ public class UnstablePlatform : MonoBehaviour
     }
 }
 
-public enum PlatformStages 
-{ 
+public enum PlatformStages
+{
     Idle,
     Breaking1,
     Breaking2,
