@@ -153,6 +153,9 @@ public class NewMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+        GetComponent<Renderer>().material.color = Color.cyan;
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<Renderer>().material.color = Color.white;
     }
 
     private bool GroundCheck()
