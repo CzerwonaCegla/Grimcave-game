@@ -12080,8 +12080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c185ee4e9ca6c4fa31bab11953d4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 0}
-  WinScreen: {fileID: 0}
+  timer: {fileID: 374550099}
+  WinScreen: {fileID: 1169802889}
 --- !u!61 &1943756786
 BoxCollider2D:
   m_ObjectHideFlags: 0
