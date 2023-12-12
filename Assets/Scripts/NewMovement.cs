@@ -69,8 +69,7 @@ public class NewMovement : MonoBehaviour
         }
     }
 
-        
-        // co to ma byæ? \/
+            
         if (moveDir > 0.01f)
         {
             transform.localScale = Vector3.one;
@@ -131,7 +130,6 @@ public class NewMovement : MonoBehaviour
                 rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref Velo, moveSmooth);
             }
         }
-        // co to kurwa jest \/
             else
             {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
