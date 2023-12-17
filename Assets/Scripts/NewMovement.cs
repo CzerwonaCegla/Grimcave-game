@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class NewMovement : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem movementParticles;
     private bool jump, dash;
     private int moveDir = 1;
     [Space(10)]
@@ -39,38 +40,39 @@ public class NewMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        var em = movementParticles.emission;
+        em.rateOverTime = 0;
     }
 
     private void Update()
     {
         if (!damaged)
         {
-        if (!isDashing)
-        {
-            if (Input.GetKey(KeyCode.D))
+            if (!isDashing)
             {
-                moveDir = 1;
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                moveDir = -1;
-            }
-            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A)) { moveDir = 0; }
-            else if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) { moveDir = 0; }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    moveDir = 1;
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    moveDir = -1;
+                }
+                else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A)) { moveDir = 0; }
+                else if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) { moveDir = 0; }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                dash = true;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                jump = true;
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    dash = true;
+                }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    jump = true;
+                }
             }
         }
-    }
 
-        
-        // co to ma byæ? \/
+            
         if (moveDir > 0.01f)
         {
             transform.localScale = Vector3.one;
@@ -87,6 +89,17 @@ public class NewMovement : MonoBehaviour
         }
         anim.SetBool("grounded", GroundCheck() != false);
         anim.SetBool("dash", isDashing != false);
+
+        if (moveDir != 0f && GroundCheck())
+        {
+            var em = movementParticles.emission;
+            em.rateOverTime = 20;
+        }
+        else
+        {
+            var em = movementParticles.emission;
+            em.rateOverTime = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -101,7 +114,7 @@ public class NewMovement : MonoBehaviour
             {
                 runSoundEffect.Play();
             }
-    }
+        }
         else
         {
             runSoundEffect.Stop();
@@ -117,6 +130,7 @@ public class NewMovement : MonoBehaviour
                 //Debug.Log("Jumped");
                 jumpSoundEffect.Play();
                 rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
             }
 
             if (dash && canDash && moveDir != 0)
@@ -131,11 +145,10 @@ public class NewMovement : MonoBehaviour
                 rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref Velo, moveSmooth);
             }
         }
-        // co to kurwa jest \/
-            else
-            {
-                rb.velocity = new Vector2(0f, rb.velocity.y);
-            }
+        else
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
     }
 
     private IEnumerator DashCor()
@@ -153,6 +166,9 @@ public class NewMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+        GetComponent<Renderer>().material.color = Color.cyan;
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<Renderer>().material.color = Color.white;
     }
 
     private bool GroundCheck()

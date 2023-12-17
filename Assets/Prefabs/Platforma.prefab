@@ -162,6 +162,9 @@ MonoBehaviour:
   - state: 6
     sprite: {fileID: 21300000, guid: f640e65a9f0a50c4aadd23bec7ded761, type: 3}
   currentStage: 0
+  soundStage1: {fileID: 3255005581067813793}
+  soundStage2: {fileID: 5579939246900836901}
+  soundStage3: {fileID: 3097265099042834375}
 --- !u!82 &3255005581067813793
 AudioSource:
   m_ObjectHideFlags: 0

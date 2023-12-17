@@ -29,18 +29,20 @@ public class CheckPointRespawner : MonoBehaviour
     {
         tpSoundEffect.Play();
         player.transform.position = player.GetComponent<CheckPointDetect>().currentCheckPoint;
+        //StartCoroutine(player.GetComponent<CheckPointDetect>)
     }
     
     private IEnumerator Respawn()
     {
         isDead = true;
         deathPlace = player.transform.position;
+        yield return new WaitForSeconds(0.5f);
+        RespawnPlayerAtCheckPoint();
         Instantiate(playerCorpse, deathPlace, Quaternion.identity);
         // Delay the execution by seconds (adjust the time as needed)
         yield return new WaitForSeconds(0.5f);
         //float delay = 0.5f;
         // Invoke("RespawnPlayerAtCheckPoint", delay);
-        RespawnPlayerAtCheckPoint();
         isDead = false;
     }
 }
