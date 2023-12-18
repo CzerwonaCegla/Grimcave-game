@@ -34,7 +34,7 @@ public class CheckPoint : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         var em = respawnParticle.emission;
-        em.rateOverTime = 80;
+        em.rateOverTime = 50;
         yield return new WaitForSeconds(1f);
         em.rateOverTime = 0;
     }

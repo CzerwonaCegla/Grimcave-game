@@ -23,7 +23,7 @@ public class Finish : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(totalSceneCount);
+        //Debug.Log(totalSceneCount);
         //Debug.Log(sceneIndex);
         if (winSequence == true)
         {
