@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 8798647935925082917}
   - component: {fileID: 6978332696689166666}
   - component: {fileID: 4936543685604580117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -644,7 +644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1989988085795363787}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,6 +717,10 @@ PrefabInstance:
     - target: {fileID: 6554188168570359222, guid: 12592f8090de41e47bc3cd7f102901f8, type: 3}
       propertyPath: m_Name
       value: MovementParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6554188168570359222, guid: 12592f8090de41e47bc3cd7f102901f8, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
