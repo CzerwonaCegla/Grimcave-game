@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RespawnParticles : MonoBehaviour
 {
-    [DoNotSerialize]public GameObject Go;
+    private GameObject Go;
     //[SerializeField] public ParticleSystem respawnParticle;
 
     // Start is called before the first frame update
