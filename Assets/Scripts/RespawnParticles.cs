@@ -28,7 +28,7 @@ public class RespawnParticles : MonoBehaviour
         {
             Go = collision.gameObject;
         }
-        if (collision.CompareTag("Traps"))
+        if (collision.CompareTag("Traps") && Go != null)
         {
             StartCoroutine(Go.GetComponent<CheckPoint>().particleKor());
         }
