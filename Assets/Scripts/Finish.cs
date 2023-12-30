@@ -10,6 +10,8 @@ public class Finish : MonoBehaviour
     public Timer timer;
     [SerializeField] GameObject WinScreen;
     private bool winSequence = false;
+    [SerializeField] private AudioSource finishSoundEffect;
+    [SerializeField] private float fadeSpeed = 1.0f;
 
     private void Start()
     {
@@ -21,7 +23,7 @@ public class Finish : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(totalSceneCount);
+        //Debug.Log(totalSceneCount);
         //Debug.Log(sceneIndex);
         if (winSequence == true)
         {
@@ -29,7 +31,7 @@ public class Finish : MonoBehaviour
             {
                 WinScreen.SetActive(true);
                 Time.timeScale = timer.timeFade;
-                timer.timeFade -= Time.deltaTime;
+                timer.timeFade -= Time.deltaTime * fadeSpeed;
             }
             else
             {
@@ -48,6 +50,12 @@ public class Finish : MonoBehaviour
         else if (collision.tag == "Player")
         {
             winSequence = true;
+            finishSoundEffect.Play();
+            NewMovement movementScript = collision.GetComponent<NewMovement>();
+            if (movementScript != null)
+            {
+                movementScript.enabled = false;
+            }
         }
 
     }

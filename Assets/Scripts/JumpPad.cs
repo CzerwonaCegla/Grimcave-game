@@ -7,6 +7,8 @@ public class JumpPad : MonoBehaviour
     [SerializeField] private float bounce = 20f;
     [SerializeField] private AudioSource jumpPadSound;
     public Animator anim;
+    [SerializeField] private bool leftBounce = false;
+    [SerializeField] private bool rightBounce = false;
 
     private void Start()
     {
@@ -18,7 +20,18 @@ public class JumpPad : MonoBehaviour
         {
             jumpPadSound.Play();
             anim.SetBool("activate", true);
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
+            if (leftBounce == true)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * bounce, ForceMode2D.Impulse);
+            }
+            else if (rightBounce == true)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * bounce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
+            }
             StartCoroutine(DeactivateAnimationAfterDelay());
         }
     }
