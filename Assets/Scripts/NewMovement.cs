@@ -35,6 +35,7 @@ public class NewMovement : MonoBehaviour
     [SerializeField] private AudioSource dashSoundEffect;
     [SerializeField] private AudioSource runSoundEffect;
     [SerializeField] private AudioSource damageSoundEffect;
+    [SerializeField] private TrailRenderer dashTrail;
 
     private void Start()
     {
@@ -42,6 +43,7 @@ public class NewMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         var em = movementParticles.emission;
         em.rateOverTime = 0;
+        dashTrail.enabled = false;
     }
 
     private void Update()
@@ -155,6 +157,7 @@ public class NewMovement : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        dashTrail.enabled = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(moveDir * dashDistance, 0f);
@@ -163,6 +166,7 @@ public class NewMovement : MonoBehaviour
         rb.gravityScale = originalGravity;
         rb.velocity = Vector2.zero;
         isDashing = false;
+        dashTrail.enabled = false;
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
