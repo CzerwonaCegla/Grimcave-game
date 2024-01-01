@@ -18,6 +18,7 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI tmpTimerText;
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource buttonPressSound;
+    [SerializeField] private AudioSource CountdownSound;
 
     [DoNotSerialize] public float timeFade = 1;
 
@@ -47,7 +48,20 @@ public class Timer : MonoBehaviour
             remainingTime -= Time.deltaTime;
             float rounded = (float)Math.Round(remainingTime, 2);
             tmpTimerText.text = rounded.ToString();
-        }
+
+            if (remainingTime <= 15f)
+            {
+                tmpTimerText.color = Color.red;
+                tmpTimerText.fontSize = 65;
+                //CountdownSound.Play();
+            }
+            else if (remainingTime > 15f)
+            {
+                tmpTimerText.color = Color.white;
+                tmpTimerText.fontSize = 40;
+                //CountdownSound.Stop();
+            }
+        }  
         else if (remainingTime <= 0f)
         {
             remainingTime = 0f;
