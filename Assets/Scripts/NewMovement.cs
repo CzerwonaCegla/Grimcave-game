@@ -35,6 +35,7 @@ public class NewMovement : MonoBehaviour
     [SerializeField] private AudioSource dashSoundEffect;
     [SerializeField] private AudioSource runSoundEffect;
     [SerializeField] private AudioSource damageSoundEffect;
+    [SerializeField] private AudioSource dashCdSound;
     [SerializeField] private TrailRenderer dashTrail;
 
     private void Start()
@@ -170,6 +171,7 @@ public class NewMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+        dashCdSound.Play();
         GetComponent<Renderer>().material.color = Color.cyan;
         yield return new WaitForSeconds(0.2f);
         GetComponent<Renderer>().material.color = Color.white;

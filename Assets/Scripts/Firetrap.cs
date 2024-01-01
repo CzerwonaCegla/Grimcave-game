@@ -10,13 +10,13 @@ public class Firetrap : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteRend;
     private float cooldownTimer;
-    private bool active;
-    [Space(10)]
-    [SerializeField] Sprite sprite1;
-    [SerializeField] Sprite sprite2;
-    [SerializeField] Sprite sprite3;
-    [SerializeField] Sprite sprite4;
-    [SerializeField] Sprite sprite5;
+    //private bool active;
+    //[Space(10)]
+    //[SerializeField] Sprite sprite1;
+    //[SerializeField] Sprite sprite2;
+    //[SerializeField] Sprite sprite3;
+    //[SerializeField] Sprite sprite4;
+    //[SerializeField] Sprite sprite5;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -34,31 +34,31 @@ public class Firetrap : MonoBehaviour
         if (cooldownTimer >= attackCooldown)
         {
             StartCoroutine(Attack());
-            cooldownTimer = Time.deltaTime;
+            //cooldownTimer = Time.deltaTime;
         }
             
     }
 
     private IEnumerator Attack()
     {
-        gameObject.SetActive(true);
-        active = true;
-        spriteRend.sprite = sprite1;
+        //gameObject.SetActive(true);
+        //active = true;
+        //spriteRend.sprite = sprite1;
+        //yield return new WaitForSeconds(0.1f);
+        //spriteRend.sprite = sprite2;
+        //yield return new WaitForSeconds(0.1f);
+        //spriteRend.sprite = sprite3;
+        //yield return new WaitForSeconds(0.1f);
+        //spriteRend.sprite = sprite4;
+        //yield return new WaitForSeconds(activeTime);
+        //spriteRend.sprite = sprite3;
+        //yield return new WaitForSeconds(0.1f);
+        //spriteRend.sprite = sprite2;
+        //yield return new WaitForSeconds(0.1f);
+        //spriteRend.sprite = sprite1;
         yield return new WaitForSeconds(0.1f);
-        spriteRend.sprite = sprite2;
-        yield return new WaitForSeconds(0.1f);
-        spriteRend.sprite = sprite3;
-        yield return new WaitForSeconds(0.1f);
-        spriteRend.sprite = sprite4;
-        yield return new WaitForSeconds(activeTime);
-        spriteRend.sprite = sprite3;
-        yield return new WaitForSeconds(0.1f);
-        spriteRend.sprite = sprite2;
-        yield return new WaitForSeconds(0.1f);
-        spriteRend.sprite = sprite1;
-        yield return new WaitForSeconds(0.1f);
-        spriteRend.sprite = sprite5;
-        active = false;
+        //spriteRend.sprite = sprite5;
+        //active = false;
         cooldownTimer = 0;    
     }
 }
