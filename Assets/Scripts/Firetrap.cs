@@ -11,7 +11,10 @@ public class Firetrap : MonoBehaviour
     private SpriteRenderer spriteRend;
     private float cooldownTimer;
     //private bool active;
-    //[Space(10)]
+    [Space(10)]
+    [SerializeField] private AudioSource igniteSoundEffect;
+    [SerializeField] private AudioSource burnSoundEffect;
+    [SerializeField] private AudioSource exitSoundEffect;
     //[SerializeField] Sprite sprite1;
     //[SerializeField] Sprite sprite2;
     //[SerializeField] Sprite sprite3;
@@ -29,18 +32,31 @@ public class Firetrap : MonoBehaviour
 
     private void Update()
     {
-        cooldownTimer += Time.deltaTime;
+        //cooldownTimer += Time.deltaTime;
 
         if (cooldownTimer >= attackCooldown)
         {
             StartCoroutine(Attack());
-            //cooldownTimer = Time.deltaTime;
+            cooldownTimer = Time.deltaTime;
+        }
+        else
+        {
+            cooldownTimer += Time.deltaTime;
         }
             
     }
 
     private IEnumerator Attack()
     {
+        igniteSoundEffect.Play();
+        spriteRend.enabled = true;
+        boxCollider.enabled = true;
+        burnSoundEffect.Play();
+        yield return new WaitForSeconds(activeTime);
+        burnSoundEffect.Stop();
+        //exitSoundEffect.Play();
+        boxCollider.enabled = false;
+        spriteRend.enabled = false;
         //gameObject.SetActive(true);
         //active = true;
         //spriteRend.sprite = sprite1;
@@ -56,7 +72,7 @@ public class Firetrap : MonoBehaviour
         //spriteRend.sprite = sprite2;
         //yield return new WaitForSeconds(0.1f);
         //spriteRend.sprite = sprite1;
-        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(0.1f);
         //spriteRend.sprite = sprite5;
         //active = false;
         cooldownTimer = 0;    
