@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BoulderSpawner : MonoBehaviour
 {
-    //[SerializeField] float cooldown = 5f;
-    //public IEnumerator BoulderReset()
-    //{
-    //    yield return new WaitForSeconds(cooldown);
-    //    GetComponent<BoulderTrap>().ActivateBoulder();
-    //}
+    [SerializeField] float cooldown = 5f;
+    public IEnumerator BoulderReset()
+    {
+        yield return new WaitForSeconds(cooldown);
+        GetComponent<BoulderTrap>().ActivateBoulder();
+    }
 }
