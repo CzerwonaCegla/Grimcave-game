@@ -40,6 +40,8 @@ public class Timer : MonoBehaviour
         LoseScreen.SetActive(false);
         RestartScreen.SetActive(false);
     }
+
+    bool lowTimerOneShot = true;
     void Update()
     {
         if (remainingTime > 0)
@@ -49,17 +51,20 @@ public class Timer : MonoBehaviour
             float rounded = (float)Math.Round(remainingTime, 2);
             tmpTimerText.text = rounded.ToString();
 
-            if (remainingTime <= 15f)
+            if (remainingTime <= 15f && lowTimerOneShot)
             {
                 tmpTimerText.color = Color.red;
                 tmpTimerText.fontSize = 65;
-                //CountdownSound.Play();
+                CountdownSound.Play();
+
+                lowTimerOneShot = false;
             }
             else if (remainingTime > 15f)
             {
                 tmpTimerText.color = Color.white;
                 tmpTimerText.fontSize = 40;
-                //CountdownSound.Stop();
+                CountdownSound.Stop();
+                lowTimerOneShot = true;
             }
         }  
         else if (remainingTime <= 0f)
