@@ -88,13 +88,11 @@ public class BoulderTrap : MonoBehaviour
         anim.SetTrigger("Break");
         yield return new WaitForSeconds(0.5f);
         spriteRend.enabled = false;
-        Debug.Log("Deactivating and resetting...");
         transform.position = boulderSpawnPosition;
         yield return new WaitForSeconds(2f);
         circleCollider.enabled = true;
         spriteRend.enabled = true;
         anim.SetTrigger("Idle");
-        Debug.Log("Reset position. Reactivating...");
         resetting = false;
     }
 }
