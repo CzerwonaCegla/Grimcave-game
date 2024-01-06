@@ -24,12 +24,11 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
-
         instance = this;
     }
 

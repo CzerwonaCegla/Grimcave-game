@@ -179,7 +179,7 @@ public class NewMovement : MonoBehaviour
 
     private bool GroundCheck()
     {
-        return Physics2D.OverlapCircle(groundDetector.position, 0.15f, groundLayer);
+        return Physics2D.OverlapCircle(groundDetector.position, 0.3f, groundLayer);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

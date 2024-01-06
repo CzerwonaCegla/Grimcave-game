@@ -19,7 +19,7 @@ public class BoulderTrap : MonoBehaviour
     //private Vector3[] direction = new Vector3[1];
     private bool attacking = false;
     private bool resetting = false;
-    private bool breaking = false;
+    //private bool breaking = false;
 
     private void OnDrawGizmos()
     {
