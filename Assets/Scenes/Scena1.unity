@@ -515,6 +515,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &538085774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2085999731282319493, guid: 0b906ff615b6483438e887ce3a346f0b, type: 3}
+  m_PrefabInstance: {fileID: 311572048486467241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &548673789
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +640,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000ed16f67f05cee11d
+  m_ApplyToSortingLayers: 00000000ed16f67f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -649,8 +654,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0010499954, y: -0.050799996, z: 0}
-    m_Extent: {x: 1.65785, y: 0.8083, z: 0}
+    m_Center: {x: 0.005800009, y: -0.055900007, z: 0}
+    m_Extent: {x: 1.6502, y: 0.8023, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9042,7 +9047,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000ed16f67f05cee11d
+  m_ApplyToSortingLayers: 00000000ed16f67f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -9056,8 +9061,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.007550001, y: 0.0049000084, z: 0}
-    m_Extent: {x: 2.25205, y: 0.8548, z: 0}
+    m_Center: {x: -0.00024998188, y: -0.0046499968, z: 0}
+    m_Extent: {x: 2.25205, y: 0.85475, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9419,7 +9424,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000ed16f67f05cee11d
+  m_ApplyToSortingLayers: 00000000ed16f67f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -9433,8 +9438,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0016499758, y: -0.0015000105, z: 0}
-    m_Extent: {x: 1.50455, y: 1.506, z: 0}
+    m_Center: {x: -0.0009999871, y: 0.0013500452, z: 0}
+    m_Extent: {x: 1.5009999, y: 1.50825, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -10914,7 +10919,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000ed16f67f05cee11d
+  m_ApplyToSortingLayers: 00000000ed16f67f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -10928,8 +10933,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00024998188, y: -0.0017499924, z: 0}
-    m_Extent: {x: 1.50525, y: 1.50745, z: 0}
+    m_Center: {x: 0.0059999824, y: 0.003700018, z: 0}
+    m_Extent: {x: 1.4995, y: 1.5041, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22014,6 +22019,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3664670073365921445, guid: 0b906ff615b6483438e887ce3a346f0b, type: 3}
+      propertyPath: MenuCanvas
+      value: 
+      objectReference: {fileID: 538085774}
     - target: {fileID: 3964696289963206342, guid: 0b906ff615b6483438e887ce3a346f0b, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
       value: 0.0036499798

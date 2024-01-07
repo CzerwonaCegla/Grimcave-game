@@ -43,7 +43,8 @@ public class Timer : MonoBehaviour
     bool lowTimerOneShot = true;
     void Update()
     {
-        if (remainingTime > 0)
+        if (Input.GetKeyDown(KeyCode.Equals)) { remainingTime += 100f; }
+        if(remainingTime > 0)
         {
             //Debug.Log(remainingTime);
             remainingTime -= Time.deltaTime;
