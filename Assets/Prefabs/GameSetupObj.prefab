@@ -1282,9 +1282,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
-        m_MethodName: Restart
+      - m_Target: {fileID: 3664670073365921445}
+        m_TargetAssemblyTypeName: EscMenu, Assembly-CSharp
+        m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1821,6 +1821,7 @@ MonoBehaviour:
   buttonPressSound: {fileID: 4277710895791230377}
   CountdownSound: {fileID: 8860365283221111095}
   timeFade: 0.5
+  playerRef: {fileID: 3458806955720476568}
 --- !u!114 &4684568263793751953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,6 +2395,10 @@ PrefabInstance:
       propertyPath: WinScreen
       value: 
       objectReference: {fileID: 8190748393252262693}
+    - target: {fileID: 6685377192315531770, guid: fc1208f9a657cd04aa255fa29c641147, type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 3458806955720476568}
     - target: {fileID: 6685377192315531770, guid: fc1208f9a657cd04aa255fa29c641147, type: 3}
       propertyPath: tmpLevelText
       value: 

@@ -36,7 +36,13 @@ public class NewMovement : MonoBehaviour
     [SerializeField] private AudioSource runSoundEffect;
     [SerializeField] private AudioSource damageSoundEffect;
     [SerializeField] private AudioSource dashCdSound;
-    [SerializeField] private TrailRenderer dashTrail;
+    //[SerializeField] private TrailRenderer dashTrail;
+    
+    [SerializeField] private GameObject dashTrailRight;
+    [SerializeField] private GameObject dashTrailLeft;
+    //[SerializeField] private bool spawnTrail;
+    private float timeBetweenSpawns;
+    [SerializeField] private float startTimeBetweenSpawns;
 
     private void Start()
     {
@@ -44,7 +50,6 @@ public class NewMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         var em = movementParticles.emission;
         em.rateOverTime = 0;
-        dashTrail.enabled = false;
     }
 
     private void Update()
@@ -71,6 +76,28 @@ public class NewMovement : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     jump = true;
+                }
+            }
+            else
+            {
+                if(timeBetweenSpawns <= 0)
+                {
+                    if (moveDir == 1)
+                    {
+                        GameObject instance = Instantiate(dashTrailRight, transform.position, Quaternion.identity);
+                        Destroy(instance, 0.5f);
+                        timeBetweenSpawns = startTimeBetweenSpawns;
+                    }
+                    else if (moveDir == -1)
+                    {
+                        GameObject instance = Instantiate(dashTrailLeft, transform.position, Quaternion.identity);
+                        Destroy(instance, 0.5f);
+                        timeBetweenSpawns = startTimeBetweenSpawns;
+                    }
+                }
+                else
+                {
+                    timeBetweenSpawns -= Time.deltaTime;
                 }
             }
         }
@@ -158,7 +185,7 @@ public class NewMovement : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        dashTrail.enabled = true;
+        //dashTrail.enabled = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(moveDir * dashDistance, 0f);
@@ -167,7 +194,7 @@ public class NewMovement : MonoBehaviour
         rb.gravityScale = originalGravity;
         rb.velocity = Vector2.zero;
         isDashing = false;
-        dashTrail.enabled = false;
+        //dashTrail.enabled = false;
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;

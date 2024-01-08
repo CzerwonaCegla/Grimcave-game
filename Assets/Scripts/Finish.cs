@@ -14,6 +14,7 @@ public class Finish : MonoBehaviour
     [SerializeField] private AudioSource finishSoundEffect;
     [SerializeField] private float fadeSpeed = 1.0f;
     [SerializeField] private TextMeshProUGUI tmpLevelText;
+    [SerializeField] GameObject playerRef;
 
     private void Start()
     {
@@ -39,8 +40,10 @@ public class Finish : MonoBehaviour
         //Debug.Log(sceneIndex);
         if (winSequence == true)
         {
+            playerRef.GetComponent<NewMovement>().enabled = false;
             if (timer.timeFade > 0.1f)
             {
+                playerRef.GetComponent<AudioSource>().enabled = false;
                 WinScreen.SetActive(true);
                 Time.timeScale = timer.timeFade;
                 timer.timeFade -= Time.deltaTime * fadeSpeed;

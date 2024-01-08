@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EscMenu : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class EscMenu : MonoBehaviour
     {
         if (isMenuOpen)
         {
+            AudioListener.volume = 1f;
             NormalCanvas.SetActive(true);
             MenuCanvas.SetActive(false);
             Time.timeScale = 1f;
@@ -34,10 +36,15 @@ public class EscMenu : MonoBehaviour
         }
         else if (!isMenuOpen)
         {
+            AudioListener.volume = 0f;
             NormalCanvas.SetActive(false);
             MenuCanvas.SetActive(true);
             Time.timeScale = 0f;
             isMenuOpen = true;
         }
+    }
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
