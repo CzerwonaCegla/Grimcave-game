@@ -8,12 +8,14 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] public ParticleSystem respawnParticle;
     public bool WasTriggered = false;
     public Sprite newCheckpointSprite;
+    [SerializeField] GameObject lightSource;
     private SpriteRenderer checkpointSpriteRenderer;
     [SerializeField] private AudioSource activationSound;
     Animator anim;
 
     private void Start()
     {
+        lightSource.SetActive(false);
         var em = respawnParticle.emission;
         em.rateOverTime = 0;
         checkpointSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -26,6 +28,7 @@ public class CheckPoint : MonoBehaviour
             activationSound.Play();
         }
         checkpointSpriteRenderer.sprite = newCheckpointSprite;
+        lightSource.SetActive(true);
         //anim.SetTrigger("activation");
         WasTriggered = true;
     }

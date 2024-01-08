@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     {
         buttonPressSound.Play();
         Application.Quit();
-        Debug.Log("Gra siê wy³¹czy³a :p");
+        Debug.Log("Okrutny czar, One man one jar");
     }
 
 }
