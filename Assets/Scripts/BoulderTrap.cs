@@ -49,7 +49,7 @@ public class BoulderTrap : MonoBehaviour
         while (true)
         {
             CheckForPlayer();
-            yield return new WaitForSeconds(checkDelay);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 

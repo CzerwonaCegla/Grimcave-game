@@ -7,6 +7,7 @@ public class Firetrap : MonoBehaviour
 {
     [SerializeField] float activeTime;
     [SerializeField] float attackCooldown;
+    [SerializeField] bool active = false;
     private BoxCollider2D boxCollider;
     private Animator anim;
     private SpriteRenderer spriteRend;
@@ -39,18 +40,19 @@ public class Firetrap : MonoBehaviour
 
     private void Update()
     {
-        //cooldownTimer += Time.deltaTime;
-
         if (cooldownTimer >= attackCooldown)
         {
-            StartCoroutine(Attack());
-            cooldownTimer = Time.deltaTime;
+            active = true;
+            cooldownTimer = 0f;
         }
-        else
+
+        if (active)
         {
-            cooldownTimer += Time.deltaTime;
+            StartCoroutine(Attack());
+            active = false;
         }
-            
+
+        cooldownTimer += Time.deltaTime;
     }
 
     private IEnumerator Attack()
