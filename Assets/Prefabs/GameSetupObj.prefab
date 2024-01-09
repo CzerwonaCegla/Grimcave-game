@@ -1282,9 +1282,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3664670073365921445}
-        m_TargetAssemblyTypeName: EscMenu, Assembly-CSharp
-        m_MethodName: GoToMenu
+      - m_Target: {fileID: 8866738264536303853}
+        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
