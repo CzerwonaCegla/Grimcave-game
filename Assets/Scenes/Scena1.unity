@@ -1037,8 +1037,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0020000339, y: -0.05580002, z: 0}
-    m_Extent: {x: 1.6542001, y: 0.8017, z: 0}
+    m_Center: {x: 0.005700052, y: -0.050849974, z: 0}
+    m_Extent: {x: 1.6505, y: 0.80675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9950,8 +9950,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.000100016594, y: 0.0026500225, z: 0}
-    m_Extent: {x: 2.2594, y: 0.84915, z: 0}
+    m_Center: {x: -0.00080001354, y: -0.008549988, z: 0}
+    m_Extent: {x: 2.2591, y: 0.85085, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -10413,8 +10413,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00395, y: 0.00050002337, z: 0}
-    m_Extent: {x: 1.50395, y: 1.5016999, z: 0}
+    m_Center: {x: 0.002849996, y: -0.0012000203, z: 0}
+    m_Extent: {x: 1.5037501, y: 1.5051999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12752,8 +12752,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0041499734, y: -0.0029000044, z: 0}
-    m_Extent: {x: 1.4999499, y: 1.502, z: 0}
+    m_Center: {x: -0.00049996376, y: 0.002750039, z: 0}
+    m_Extent: {x: 1.4971, y: 1.50255, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13152,7 +13152,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
