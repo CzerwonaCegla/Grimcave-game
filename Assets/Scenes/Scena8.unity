@@ -27724,6 +27724,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 156390137}
     m_Modifications:
     - target: {fileID: -2415248325851461645, guid: 3ccf3156f884d6c4bbd74779d059e771, type: 3}
+      propertyPath: m_AutoTiling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2415248325851461645, guid: 3ccf3156f884d6c4bbd74779d059e771, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
       value: 2
       objectReference: {fileID: 0}
@@ -27804,6 +27808,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 156390137}
     m_Modifications:
+    - target: {fileID: -2415248325851461645, guid: 3ccf3156f884d6c4bbd74779d059e771, type: 3}
+      propertyPath: m_AutoTiling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2415248325851461645, guid: 3ccf3156f884d6c4bbd74779d059e771, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
       value: 2
@@ -31227,6 +31235,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 156390137}
     m_Modifications:
+    - target: {fileID: -2415248325851461645, guid: 3ccf3156f884d6c4bbd74779d059e771, type: 3}
+      propertyPath: m_AutoTiling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2415248325851461645, guid: 3ccf3156f884d6c4bbd74779d059e771, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
       value: 2
